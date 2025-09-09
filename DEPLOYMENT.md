@@ -9,7 +9,7 @@ This guide provides instructions for deploying the Sarvavihar e-commerce applica
 
 ## Prerequisites
 
-- A Vercel or Render account
+- A Vercel account
 - GitHub repositories for both frontend and backend
 - MongoDB Atlas account with a configured cluster
 
@@ -50,13 +50,13 @@ This guide provides instructions for deploying the Sarvavihar e-commerce applica
      - Name: `sarvavihar-backend` (or your preferred name)
      - Runtime: Node
      - Build Command: `npm install`
-     - Start Command: `node server.js` (or your main file)
+     - Start Command: `node server.js` (or your entry point)
    - Add the environment variables:
      - `MONGODB_URI`: Your MongoDB Atlas connection string
      - `JWT_SECRET`: Secret key for JWT token generation
      - `JWT_REFRESH_SECRET`: Secret key for refresh tokens
-     - `JWT_EXPIRE`: Token expiration time
-     - `JWT_REFRESH_EXPIRE`: Refresh token expiration
+     - `JWT_EXPIRE`: Token expiration time (e.g., "15m")
+     - `JWT_REFRESH_EXPIRE`: Refresh token expiration (e.g., "7d")
      - `FRONTEND_URL`: URL of your deployed frontend
      - `PORT`: 10000 (Render will use this port)
    - Click "Create Web Service"
@@ -71,6 +71,8 @@ This guide provides instructions for deploying the Sarvavihar e-commerce applica
 
 2. **Push your code to GitHub** (if not already done)
 
+### Vercel Deployment
+
 3. **Deploy to Vercel**:
    - Go to [Vercel](https://vercel.com)
    - Import your frontend repository
@@ -83,6 +85,20 @@ This guide provides instructions for deploying the Sarvavihar e-commerce applica
    - Add the environment variables:
      - `REACT_APP_API_URL`: URL of your deployed backend
    - Deploy
+
+### Render Deployment
+
+3. **Deploy to Render**:
+   - Go to [Render](https://render.com)
+   - Click "New" > "Static Site"
+   - Connect your GitHub repository
+   - Configure the project:
+     - Name: `sarvavihar-frontend` (or your preferred name)
+     - Build Command: `npm install && npm run build`
+     - Publish Directory: `build`
+   - Add the environment variables:
+     - `REACT_APP_API_URL`: URL of your deployed backend
+   - Click "Create Static Site"
 
 ## Troubleshooting
 
@@ -124,5 +140,5 @@ If your build fails on Render:
 After making changes to your code:
 
 1. Push changes to GitHub
-2. Vercel will automatically redeploy if you've set up automatic deployments
-3. Alternatively, trigger a manual redeployment from the Vercel dashboard
+2. Vercel or Render will automatically redeploy if you've set up automatic deployments
+3. Alternatively, trigger a manual redeployment from the Vercel or Render dashboard
