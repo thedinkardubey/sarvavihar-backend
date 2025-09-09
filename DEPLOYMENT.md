@@ -2,18 +2,20 @@
 
 ## Overview
 
-This guide provides instructions for deploying the Sarvavihar e-commerce application on Vercel. The application consists of two parts:
+This guide provides instructions for deploying the Sarvavihar e-commerce application on Vercel or Render. The application consists of two parts:
 
 1. **Frontend**: React application
 2. **Backend**: Node.js/Express API
 
 ## Prerequisites
 
-- A Vercel account
+- A Vercel or Render account
 - GitHub repositories for both frontend and backend
 - MongoDB Atlas account with a configured cluster
 
 ## Backend Deployment
+
+### Vercel Deployment
 
 1. **Push your code to GitHub** (if not already done)
 
@@ -35,6 +37,29 @@ This guide provides instructions for deploying the Sarvavihar e-commerce applica
      - Development Command: `npm run dev`
    - Add the environment variables
    - Deploy
+
+### Render Deployment
+
+1. **Push your code to GitHub** (if not already done)
+
+2. **Deploy to Render**:
+   - Go to [Render](https://render.com)
+   - Click "New" > "Web Service"
+   - Connect your GitHub repository
+   - Configure the project:
+     - Name: `sarvavihar-backend` (or your preferred name)
+     - Runtime: Node
+     - Build Command: `npm install`
+     - Start Command: `node server.js` (or your main file)
+   - Add the environment variables:
+     - `MONGODB_URI`: Your MongoDB Atlas connection string
+     - `JWT_SECRET`: Secret key for JWT token generation
+     - `JWT_REFRESH_SECRET`: Secret key for refresh tokens
+     - `JWT_EXPIRE`: Token expiration time
+     - `JWT_REFRESH_EXPIRE`: Refresh token expiration
+     - `FRONTEND_URL`: URL of your deployed frontend
+     - `PORT`: 10000 (Render will use this port)
+   - Click "Create Web Service"
 
 ## Frontend Deployment
 
@@ -79,9 +104,20 @@ This guide provides instructions for deploying the Sarvavihar e-commerce applica
    - Ensure MongoDB Atlas connection is working
    - Check backend logs for database connection issues
 
-5. **Vercel logs**:
-   - Check deployment logs in Vercel for both frontend and backend
+5. **Deployment logs**:
+   - Check deployment logs in Vercel or Render for both frontend and backend
    - Look for any build or runtime errors
+
+### Build Failures on Render
+
+If your build fails on Render:
+
+1. Check the build logs for specific error messages
+2. Ensure that all dependencies are properly listed in package.json
+3. Verify that the Node.js version is compatible
+   - We've included a `.node-version` file specifying Node.js 18.18.0
+   - Alternatively, you can set the `NODE_VERSION` environment variable in Render
+4. Make sure the build and start commands are correct
 
 ## Redeployment
 
