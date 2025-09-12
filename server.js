@@ -11,10 +11,23 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
+const allowedOrigins = [
+  "https://sarvavihar.vercel.app",
+  "sarvavihar-git-main-thedinkardubeys-projects.vercel.app",
+  "sarvavihar-apcbi26xo-thedinkardubeys-projects.vercel.app"
+];
+
 app.use(cors({
-  origin: 'https://sarvavihar.vercel.app/',
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true); // allow
+    } else {
+      callback(new Error("Not allowed by CORS")); // block
+    }
+  },
   credentials: true
 }));
+
 app.use(express.json());
 
 // Database connection
