@@ -13,8 +13,8 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 const allowedOrigins = [
   "https://sarvavihar.vercel.app",
-  "sarvavihar-git-main-thedinkardubeys-projects.vercel.app",
-  "sarvavihar-apcbi26xo-thedinkardubeys-projects.vercel.app"
+  "https://sarvavihar-git-main-thedinkardubeys-projects.vercel.app",
+  "https://sarvavihar-apcbi26xo-thedinkardubeys-projects.vercel.app"
 ];
 
 app.use(cors({
